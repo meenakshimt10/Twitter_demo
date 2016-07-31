@@ -49,6 +49,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let cell = sender as! TwitterTableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let tweetViewController = segue.destinationViewController as! TweetViewController
+        print(tweets)
+        print(indexPath)
+        if let tweets = tweets{
+            tweetViewController.tweet = tweets[indexPath!.row]
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return tweetDisplayCount
     }
