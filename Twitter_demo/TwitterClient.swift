@@ -43,6 +43,28 @@ class TwitterClient: BDBOAuth1SessionManager {
             })
     }
     
+    func postTweet(status:String) {
+        let obj = ["status":"hello world"]
+        /*
+        POST("1.1/statuses/update.json", parameters: obj,  uploadProgress: nil, success: {(task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                print("success")
+            }, failure: {(task: NSURLSessionDataTask?, error: NSError) -> Void in
+                print(error)
+                
+        })  -> NSURLSessionDataTask in
+        print("done")
+        
+            */
+        POST("1.1/statuses/update.json", parameters: obj, success: {(task : NSURLSessionDataTask , response : AnyObject?) -> Void in
+            print("sucessfully inserted tweet")
+            }, failure: {(task : NSURLSessionDataTask?, error : NSError) -> Void in
+            print("error")
+        })
+        print("done")
+        
+        
+    }
+    
     func login(success : () -> (), failure :(NSError) -> ()){
         deauthorize()
         loginSuccess = success
@@ -75,10 +97,13 @@ class TwitterClient: BDBOAuth1SessionManager {
             self.loginFailure!(error)
         }
     }
-    
+
     func logout(){
         User.currentUser = nil
         deauthorize()
         NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogoutNotification, object: nil)
     }
+    
+    
+    
 }

@@ -22,9 +22,9 @@ class TweetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        retweetsLabel.text = String(tweet.retweetCount) as? String
+        retweetsLabel.text = String(tweet.retweetCount) + " Reweets" as? String
         
-        favoritesLabel.text = String(tweet.favoritesCount) as? String
+        favoritesLabel.text = String(tweet.favoritesCount) + " favorites" as? String
         textLabel.text = tweet.text as? String
         usernameLabel.text = tweet.user?.screenname as? String
         
@@ -53,6 +53,13 @@ class TweetViewController: UIViewController {
     }
     */
     
+    @IBAction func onHome(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        let navigationViewController = segue.destinationViewController as! UINavigationController
+        let tweetViewController    = navigationViewController.topViewController as! ReplyViewController
+    }
 
 }

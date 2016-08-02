@@ -49,6 +49,19 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
     
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        let navigationViewController = segue.destinationViewController as! UINavigationController
+        let tweetViewController    = navigationViewController.topViewController as! TweetViewController
+        let cell = sender as! TwitterTableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        if let tweets = tweets{
+            tweetViewController.tweet = tweets[indexPath!.row]
+        }
+    }
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let cell = sender as! TwitterTableViewCell
         let indexPath = tableView.indexPathForCell(cell)
@@ -59,7 +72,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tweetViewController.tweet = tweets[indexPath!.row]
         }
     }
-    
+    */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return tweetDisplayCount
     }
