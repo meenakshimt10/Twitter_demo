@@ -44,7 +44,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func postTweet(status:String) {
-        let obj = ["status":"hello world"]
+        let obj = ["status" : "hello world"]
         /*
         POST("1.1/statuses/update.json", parameters: obj,  uploadProgress: nil, success: {(task: NSURLSessionDataTask, response: AnyObject?) -> Void in
                 print("success")
@@ -58,7 +58,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         POST("1.1/statuses/update.json", parameters: obj, success: {(task : NSURLSessionDataTask , response : AnyObject?) -> Void in
             print("sucessfully inserted tweet")
             }, failure: {(task : NSURLSessionDataTask?, error : NSError) -> Void in
-            print("error")
+            print("error\(error)")
         })
         print("done")
         
