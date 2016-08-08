@@ -29,6 +29,10 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             profileImage.setImageWithURL(profileUrl)
         }
+        print("hh\(User.currentUser!.followers)")
+        followersLabel.text = String(User.currentUser!.followers) + "Followers" as? String
+        
+        followingLabel.text = String(User.currentUser!.following) + "Followers" as? String
         
         
         let refreshControl = UIRefreshControl()

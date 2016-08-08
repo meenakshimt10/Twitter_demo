@@ -14,6 +14,8 @@ class User: NSObject {
     var profileUrl: NSURL?
     var tagline: NSString?
     var dictionary: NSDictionary
+    var followers: Int?
+    var following: Int?
     static let userDidLogoutNotification = "UserDidLogout"
     
     init(dictionary: NSDictionary) {
@@ -23,6 +25,9 @@ class User: NSObject {
         if let profileUrlString = profileUrlString{
             profileUrl = NSURL(string: profileUrlString)
         }
+        followers = (dictionary["followers_count"] as? Int) ?? 0
+        following = (dictionary["following"] as? Int) ?? 0
+        
         tagline = dictionary["description"] as? String
         self.dictionary = dictionary
     }
