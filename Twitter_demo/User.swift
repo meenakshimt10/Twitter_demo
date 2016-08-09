@@ -15,6 +15,7 @@ class User: NSObject {
     var tagline: NSString?
     var dictionary: NSDictionary
     var followers: Int?
+    var tweetsCount: Int? = 0
     var following: Int?
     static let userDidLogoutNotification = "UserDidLogout"
     
@@ -27,6 +28,8 @@ class User: NSObject {
         }
         followers = (dictionary["followers_count"] as? Int) ?? 0
         following = (dictionary["following"] as? Int) ?? 0
+        
+        tweetsCount = (dictionary["statuses_count"] as? Int) ?? 0
         
         tagline = dictionary["description"] as? String
         self.dictionary = dictionary

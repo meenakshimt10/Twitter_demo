@@ -29,11 +29,15 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             
             profileImage.setImageWithURL(profileUrl)
         }
-        print("hh\(User.currentUser!.followers)")
-        followersLabel.text = String(User.currentUser!.followers) + "Followers" as? String
+        if User.currentUser != nil {
+        tweetsLabel.text = "\(User.currentUser?.tweetsCount ?? 0) Tweets"
+            
+        followersLabel.text = "\(User.currentUser?.followers ?? 0) Followers"
         
-        followingLabel.text = String(User.currentUser!.following) + "Followers" as? String
+        followingLabel.text = String(User.currentUser?.following ?? 0) + " Following" as? String
+        }
         
+        print(String(User.currentUser?.following) + "Following")
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -42,7 +46,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
             self.tweets = tweets
             self.tableView.reloadData()
             for tweet in tweets{
-                print(tweet.text)
+                //print(tweet.text)
             }
         }) { (error: NSError)-> () in
             print("tweets error:\(error)")

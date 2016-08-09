@@ -25,7 +25,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tweets = tweets
             self.tableView.reloadData()
             for tweet in tweets{
-                print(tweet.text)
+                //print(tweet.text)
             }
         }) { (error: NSError)-> () in
                 print("tweets error:\(error)")
